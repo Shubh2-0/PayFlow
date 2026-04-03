@@ -1,0 +1,3 @@
+CREATE DATABASE IF NOT EXISTS payflow_auth;
+CREATE DATABASE IF NOT EXISTS payflow_wallet;
+CREATE DATABASE IF NOT EXISTS payflow_notification;

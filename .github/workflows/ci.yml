@@ -1,0 +1,39 @@
+name: PayFlow CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build Auth Service
+        run: cd auth-service && mvn clean verify -B
+
+      - name: Build Wallet Service
+        run: cd wallet-service && mvn clean verify -B
+
+      - name: Build Notification Service
+        run: cd notification-service && mvn clean verify -B
+
+      - name: Run Auth Service Tests
+        run: cd auth-service && mvn test -B
+
+      - name: Run Wallet Service Tests
+        run: cd wallet-service && mvn test -B
+
+      - name: Run Notification Service Tests
+        run: cd notification-service && mvn test -B
