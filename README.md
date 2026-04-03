@@ -1,6 +1,14 @@
-# PayFlow -- Digital Wallet & Payment System
+# PayFlow — Digital Wallet & Payment System
 
-A microservices-based digital wallet backend built with Java 17 and Spring Boot 3.2. Implements production-grade patterns including pessimistic locking for concurrent balance updates, idempotent transaction processing, deadlock prevention, and event-driven notifications.
+A production-grade **digital wallet and payment backend** built with **microservices architecture** using Java 17 and Spring Boot 3. Designed to handle real-world challenges of financial systems — concurrent balance updates, duplicate transaction prevention, and reliable notification delivery.
+
+**What makes this different from a typical CRUD project:**
+
+- **Pessimistic Locking** — Prevents double-spending when multiple transactions hit the same wallet simultaneously
+- **Idempotent Transactions** — Safe against network retries; same request twice = single debit, not two
+- **Deadlock Prevention** — Wallets always locked in ascending ID order during transfers, making deadlocks structurally impossible
+- **Event-Driven Architecture** — Transaction events flow through RabbitMQ to decouple services; notification failures never block payments
+- **60+ Test Cases** — Unit tests (Mockito), controller tests (MockMvc), repository tests (H2) across all services
 
 ---
 
@@ -148,8 +156,8 @@ Each service owns its database. The wallet-service publishes transaction events 
 ### Quick Start (Docker)
 
 ```bash
-git clone https://github.com/your-username/payflow.git
-cd payflow
+git clone https://github.com/Shubh2-0/PayFlow.git
+cd PayFlow
 docker-compose up --build
 ```
 
