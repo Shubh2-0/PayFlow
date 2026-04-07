@@ -1,5 +1,7 @@
 <div align="center">
 
+![PayFlow Banner](./assets/PayFlow.png)
+
 # 💳 PayFlow
 
 ### Digital Wallet & Payment System
